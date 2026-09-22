@@ -1,2 +1,42 @@
-# This file is intentionally empty.
-# Check expansion specific TOC files for the correct data.
+# Fallback TOC: loaded by any client flavor that doesn't match one of the
+# suffixed TOC files (_Vanilla/_TBC/_Wrath/_Cata/_Mists). Without this, "WoW:
+# Forever" (WOW_PROJECT_MAINLINE, TOC interface 16000-19999) silently loads
+# none of the addon's files. There is no recognized _Forever/_Mainline TOC
+# suffix for it (confirmed: Auctionator, which supports both Forever and real
+# retail, also ships a single unsuffixed TOC listing every interface version
+# via a comma list rather than per-flavor files). See GameVersions.lua for the
+# runtime IsForever/IsRetail-style split, which several established addons
+# (e.g. Auctionator) use the same WOW_PROJECT_ID + build-number technique for.
+## Interface: 16001
+## Title: Disenchant Buddy v2.6.5
+## Author: BreakBB
+## Notes: A lightweight addon to show disenchant results on item tooltips.
+## SavedVariables: DisenchantBuddy_Profile
+## Version: 2.6.5
+## OptionalDeps: Auctionator
+## IconTexture: Interface\AddOns\DisenchantBuddy\logo.png
+## Category: Professions
+## Category-deDE: Berufe
+## Category-esES: Profesiones
+## Category-esMX: Profesiones
+## Category-frFR: Métiers
+## Category-itIT: Professioni
+## Category-koKR: 전문 기술
+## Category-ptBR: Profissões
+## Category-ruRU: Профессии
+## Category-zhCN: 专业
+## Category-zhTW: 專業技能
+## X-Curse-Project-ID: 1149594
+## X-Wago-ID: 56n9DdN9
+
+GameVersions.lua
+Materials.lua
+Locales/Locales.xml
+GetTooltipLineData.lua
+AddDisenchantInfo.lua
+DisenchantResults/Uncommon.lua
+DisenchantResults/Rare.lua
+DisenchantResults/Epic.lua
+AddMaterialInfo.lua
+SlashCommands.lua
+DisenchantBuddy.lua
