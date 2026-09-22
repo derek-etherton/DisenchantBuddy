@@ -1,7 +1,7 @@
 ---@class DisenchantBuddy
 local DisenchantBuddy = select(2, ...)
 
-DisenchantBuddy.FormatCoin = GetCoinTextureString or C_CurrencyInfo.GetCoinTextureString
+DisenchantBuddy.FormatCoin = GetCoinTextureString or (C_CurrencyInfo and C_CurrencyInfo.GetCoinTextureString)
 
 ---@class TooltipLineData
 ---@field left string
