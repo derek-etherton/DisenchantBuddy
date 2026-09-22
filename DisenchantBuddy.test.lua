@@ -28,6 +28,7 @@ describe("DisenchantBuddy", function()
         end
         _G.GameTooltip = {
             HookScript = spy.new(function() end),
+            HasScript = function() return true end,
             IsForbidden = function()
                 return false
             end,
@@ -88,7 +89,8 @@ describe("DisenchantBuddy", function()
             assert.spy(_G.ItemRefTooltip.HookScript).was_not.called()
         end)
 
-        it("should use TooltipDataProcessor when available instead of HookScript", function()
+        it("should use TooltipDataProcessor when the legacy script handle is gone (e.g. WoW: Forever)", function()
+            _G.GameTooltip.HasScript = function() return false end
             _G.TooltipDataProcessor = {
                 AddTooltipPostCall = spy.new(function() end)
             }

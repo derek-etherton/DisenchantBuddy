@@ -55,12 +55,12 @@ function DisenchantBuddy.OnPlayerEnteringWorld(_, _, isLogin, isReload)
     end
 
     if isLogin or isReload then
-        if TooltipDataProcessor and TooltipDataProcessor.AddTooltipPostCall then
-            -- Modern clients dropped the OnTooltipSetItem script in favor of this API.
-            TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, DisenchantBuddy.OnTooltipSetItem)
-        else
+        -- HasScript is the reliable way to detect the old OnTooltipSetItem hook; TooltipDataProcessor is the newer callback-based replacement.
+        if GameTooltip.HasScript and GameTooltip:HasScript("OnTooltipSetItem") then
             GameTooltip:HookScript("OnTooltipSetItem", DisenchantBuddy.OnTooltipSetItem) -- hovering over an item
             ItemRefTooltip:HookScript("OnTooltipSetItem", DisenchantBuddy.OnTooltipSetItem) -- clicking an item link
+        elseif TooltipDataProcessor and TooltipDataProcessor.AddTooltipPostCall then
+            TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, DisenchantBuddy.OnTooltipSetItem)
         end
 		DisenchantBuddy_Profile = DisenchantBuddy_Profile or {}
     end
