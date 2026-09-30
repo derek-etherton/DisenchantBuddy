@@ -39,6 +39,12 @@ describe("GameVersions", function()
         assert.is_false(DisenchantBuddy.IsForever)
     end)
 
+    it("should set IsForever from the build version alone, regardless of project id", function()
+        load(nil, 16001)
+
+        assert.is_true(DisenchantBuddy.IsForever)
+    end)
+
     it("should not set IsForever just below the reserved range (mainline)", function()
         load(_G.WOW_PROJECT_MAINLINE, 15999)
 
